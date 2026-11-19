@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>En Prueba — Los deportes olímpicos que más años marginaron a las mujeres</title>
+  <meta name="description" content="Webstory de datos sobre los deportes olímpicos que más años tardaron en incluir pruebas femeninas (1900–2024), basada en registros de Olympedia." />
+  <meta property="og:title" content="En Prueba — Los deportes olímpicos que más años marginaron a las mujeres" />
+  <meta property="og:description" content="Un repaso histórico por las disciplinas que tardaron décadas en abrir sus puertas a las mujeres y cómo la lucha por la igualdad ha transformado la competencia moderna." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand-lockup" aria-label="En Prueba — Inicio">
+        <svg width="38" height="23" viewBox="0 0 46 28" fill="none" aria-hidden="true">
+          <rect x="0" y="20" width="6" height="6" fill="#D6336C" />
+          <rect x="7" y="4" width="6" height="6" fill="#1F7A8C" />
+          <rect x="7" y="12" width="6" height="6" fill="#1F7A8C" />
+          <rect x="7" y="20" width="6" height="6" fill="#1F7A8C" />
+          <rect x="16" y="12" width="6" height="6" fill="#D6336C" />
+          <rect x="16" y="20" width="6" height="6" fill="#D6336C" />
+          <rect x="23" y="4" width="6" height="6" fill="#1F7A8C" />
+          <rect x="23" y="12" width="6" height="6" fill="#1F7A8C" />
+          <rect x="23" y="20" width="6" height="6" fill="#1F7A8C" />
+          <rect x="32" y="4" width="6" height="6" fill="#D6336C" />
+          <rect x="32" y="12" width="6" height="6" fill="#D6336C" />
+          <rect x="32" y="20" width="6" height="6" fill="#D6336C" />
+          <rect x="39" y="4" width="6" height="6" fill="#1F7A8C" />
+          <rect x="39" y="12" width="6" height="6" fill="#1F7A8C" />
+          <rect x="39" y="20" width="6" height="6" fill="#1F7A8C" />
+        </svg>
+        <span class="brand-wordmark">EN PRUEBA</span>
+      </a>
+
+      <nav class="topbar-nav" aria-label="Secciones de la historia">
+        <a href="#pista">La pista</a>
+        <a href="#reflexion">Análisis</a>
+        <a href="#fuentes">Fuentes</a>
+      </nav>
+
+      <span class="brand-meta">124 AÑOS DE OPORTUNIDADES OLÍMPICAS · 1900–2024</span>
+    </div>
+  </header>
+
+  <main id="top" class="page-container">
+    <!-- 1. TÍTULO Y BAJADA -->
+    <section class="hero" aria-labelledby="story-title">
+      <h1 id="story-title" class="hero-title">Los deportes olímpicos que más años marginaron a las mujeres</h1>
+      <p class="hero-bajada">Un repaso histórico por las disciplinas que tardaron décadas en abrir sus puertas a las mujeres y cómo la lucha por la igualdad ha transformado la competencia moderna.</p>
+    </section>
+
+    <!-- 2. PISTA ANIMADA -->
+    <section id="pista" class="track-section" aria-label="Carriles por deporte olímpico según años de espera para el debut femenino">
+      <div class="track-header">
+        <div class="year-readout">
+          <div class="year-counter-box">
+            <span class="year-label">AÑO</span>
+            <div id="yearCounter" class="year-number" aria-live="polite">1900</div>
+          </div>
+          <div class="year-substats">
+            <span id="elapsedSubstat" class="substat-line">0 años de espera</span>
+          </div>
+        </div>
+
+        <div class="track-controls">
+          <button id="playPauseBtn" type="button" class="btn btn-primary-light">
+            <span id="playPauseLabel">Pausar</span>
+          </button>
+          <button id="resetBtn" type="button" class="btn btn-secondary-light">Reiniciar</button>
+        </div>
+      </div>
+
+      <div class="scrubber-row">
+        <div class="scrubber-wrap">
+          <input id="timeScrubber" class="scrubber-input" type="range" min="0" max="108" step="0.1" value="0" aria-label="Línea de tiempo de la carrera en años de espera" />
+          <div class="scrubber-ticks">
+            <span>0 años (Salida)</span>
+            <span>28 años</span>
+            <span>56 años</span>
+            <span>84 años</span>
+            <span>108 años (Boxeo)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="track-columns-head">
+        <div class="col-head-left">Deporte Olímpico</div>
+        <div class="col-head-center">
+          <span>Salida</span>
+        </div>
+        <div class="col-head-right">Años de espera</div>
+      </div>
+
+      <div class="track-body">
+        <div id="lanesContainer" class="lanes-column" role="list" aria-label="Carriles por deporte olímpico"></div>
+      </div>
+
+      <div class="track-caption-note">
+        <span>Parten todas al mismo tiempo; cada corredora demora en llegar al final los años que su deporte tardó en abrir la categoría femenina.</span>
+        <div class="track-legend">
+          <span class="legend-item"><span class="legend-swatch swatch-blanco"></span> Recorrido hacia la inclusión</span>
+          <span class="legend-item"><span class="legend-swatch swatch-ambar"></span> Carril</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PÁRRAFO DE REFLEXIÓN -->
+    <section id="reflexion" class="reflection-section" aria-label="Reflexión histórica">
+      <p class="reflection-prose">Esta abre una reflexión en torno a las barreras sistémicas que han definido históricamente el acceso femenino al deporte. Mientras que en disciplinas como el tenis o la equitación las oportunidades para las mujeres y hombres se abrieron de forma temprana y simultánea, los deportes asociados históricamente a la fuerza bruta, combate de cuerpo a cuerpo o la resistencia militarizada funcionaron durante décadas como clubes exclusivamente para hombres.</p>
+
+      <aside class="reflection-aside" aria-label="Dato clave de espera máxima">
+        <p class="aside-stat-value">108 AÑOS</p>
+        <p class="aside-stat-label">BRECHA MÁXIMA REGISTRADA · BOXEO</p>
+        <p class="aside-stat-detail">Entre el debut olímpico masculino en San Luis 1904 y la primera competencia femenina de boxeo en Londres 2012 pasaron más de un siglo de exclusión reglamentaria.</p>
+      </aside>
+    </section>
+
+    <!-- CONTEXTO COMPARATIVO -->
+    <section class="comparison-strip" aria-label="Contraste con disciplinas de apertura temprana y brecha vigente">
+      <article class="comp-card">
+        <div class="comp-top-rule swatch-petroleo"></div>
+        <p class="comp-kicker">APERTURA TEMPRANA</p>
+        <p class="comp-value">0 AÑOS</p>
+        <p class="comp-desc">Tenis (1900) y pruebas ecuestres abiertas contaron con presencia femenina desde su ingreso al programa olímpico moderno.</p>
+      </article>
+      <article class="comp-card">
+        <div class="comp-top-rule swatch-fucsia"></div>
+        <p class="comp-kicker">COMBATE Y FUERZA · TOP 4 ESPERA</p>
+        <p class="comp-value">96–108 AÑOS</p>
+        <p class="comp-desc">Boxeo (108), Lucha (100), Fútbol (96) y Halterofilia (96) encabezan los cierres históricos más prolongados para las mujeres.</p>
+      </article>
+      <article class="comp-card">
+        <div class="comp-top-rule swatch-ambar"></div>
+        <p class="comp-kicker">BRECHA EN PARÍS 2024</p>
+        <p class="comp-value">12 vs 6</p>
+        <p class="comp-desc">En Lucha (12 masculinas / 6 femeninas) y Boxeo (7 / 6), la paridad total de pruebas aún no se alcanza en los registros de 2024.</p>
+      </article>
+    </section>
+
+    <!-- 4. CITA DE FUENTE -->
+    <footer id="fuentes" class="editorial-footer">
+      <p class="footer-source">FUENTE: OLYMPEDIA (OLYMPEDIA.ORG), REGISTROS OFICIALES DE LOS JUEGOS OLÍMPICOS DE VERANO 1900–2024.</p>
+    </footer>
+  </main>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
